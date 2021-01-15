@@ -45,7 +45,7 @@
 				</div>
 				<div class="col-md-5 col-md-offset-2">
 					<div class="card card-contact">
-						<form role="form" id="contact-form" method="post">
+						<form action=""  id="contact-form" >
 							<div class="header header-raised header-primary text-center">
 								<h4 class="card-title">Contactame</h4>
 							</div>
@@ -54,28 +54,28 @@
 									<div class="col-md-6">
 										<div class="form-group label-floating is-empty">
 											<label class="control-label">Nombre</label>
-											<input type="text" name="name" class="form-control">
+											<input id="nombre" type="text"  class="form-control">
 										<span class="material-input"></span></div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group label-floating is-empty">
 											<label class="control-label">Apellido</label>
-											<input type="text" name="name" class="form-control">
+											<input id="apellido" type="text"  class="form-control">
 										<span class="material-input"></span></div>
 									</div>
 								</div>
 								<div class="form-group label-floating is-empty">
 									<label class="control-label">Email</label>
-									<input type="email" name="email" class="form-control">
+									<input id="email" type="email"  class="form-control">
 								<span class="material-input"></span></div>
 								<div class="form-group label-floating is-empty">
-									<label class="control-label"> Mensage</label>
-									<textarea name="message" class="form-control" id="message" rows="6"></textarea>
+									<label class="control-label"> Mensaje</label>
+									<textarea id="mensaje"  class="form-control" id="message" rows="6"></textarea>
 								<span class="material-input"></span></div>
 
-								<div class="row">
+								<div class="row" id="respuesta">
 									<div class="col-md-6">
-										<button type="submit" class="btn btn-primary pull-right">Enviar</button>
+										<button id="submit" class="btn btn-primary btn-block pull-right">Enviar</button>
 									</div>
 								</div>
 							</div>
@@ -86,6 +86,44 @@
 			</div>
 		</div>
 	</div>
+
+	<script >document.querySelector("#submit").addEventListener("click", e => {
+		e.preventDefault();
+	  
+		//INGRESE UN NUMERO DE WHATSAPP VALIDO AQUI:
+		let telefono = "573022370040";
+	  
+		let nombre = document.querySelector("#nombre").value;
+		let apellido = document.querySelector("#apellido").value;
+		let email = document.querySelector("#email").value;
+		let mensaje = document.querySelector("#mensaje").value;
+		let resp = document.querySelector("#respuesta");
+	  
+		resp.classList.remove("fail");
+		resp.classList.remove("send");
+	  
+		let url = `https://api.whatsapp.com/send?phone=${telefono}&text=
+			  *_Roman Calderin-Web_*%0A
+			  *Reservas*%0A%0A
+			  *¿Cuál es tu nombre?*%0A
+			  ${nombre} ${apellido}  %0A
+			  *Correo Electronico*%0A
+			  ${email}%0A
+			  *Tu Mensaje*%0A
+			  ${mensaje}%0A
+			  `;
+	  
+		if (nombre === "" || apellido === "" || email === "") {
+		  resp.classList.add("fail");
+		  resp.innerHTML = `Faltan algunos datos, ${nombre}`;
+		  return false;
+		}
+		resp.classList.remove("fail");
+		resp.classList.add("send");
+		resp.innerHTML = `Se ha enviado tu reserva, ${nombre}`;
+	  
+		window.open(url);
+	  });</script>
      
  <!--pre-footer-->
  <%- include ('pre-footer') %>

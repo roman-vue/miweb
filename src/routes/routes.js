@@ -7,7 +7,11 @@ router.get('/', (req, res)=>{
 
 router.get('/contact', (req, res)=>{
     res.render('contact', {title:'Contacto'});
+
+   
 });
+
+
 
 
 module.exports=router;
