@@ -1,0 +1,32 @@
+
+body{
+    background: black;  
+    color: white;
+}
+
+
+
+#carousel-example-generic{
+    height:10% ;
+}
+
+#titulo1{
+    color: white;
+}
+
+#yo h4{
+    color: white;
+}
+
+#adsi h4{
+    color: white;
+}
+
+#proyect h2{
+    color: white;
+}
+
+
+#proyect p{
+    color: black;
+}
